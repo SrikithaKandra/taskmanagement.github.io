@@ -12,7 +12,16 @@
     <header>
         <h1>Task Management</h1>
     </header>
-
+    <!--Section buttons to access planner, courses, calendar-->
+    <div class="options">
+        <span>
+            <button id="agendaButton" class="option-button">Agenda</button>
+            <button id="courseButton" class="option-button">Courses</button>
+            <button id="calendarButton" class="option-button">Calendar</button>
+        </span>
+    </div>
+    <hr>
+    <!--Columns for the Kanban board.-->
     <div class="columns">
         <div id="allTasks" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h2>All Tasks</h2>
@@ -26,9 +35,10 @@
             <h2>Upcoming Tasks</h2>
         </div>
     </div>
-
+    <!--The button to add tasks.-->
     <button class="add-task-button" onclick="openAddTaskModal()">+</button>
 
+    <!--This is what appears after pressing the add task button.-->
     <div id="addTaskModal" class="add-task-modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeAddTaskModal()">&times;</span>
