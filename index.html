@@ -41,7 +41,9 @@
     <!--This is what appears after pressing the add task button.-->
     <div id="addTaskModal" class="add-task-modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeAddTaskModal()">&times;</span>
+            <!-- <span class="close-modal" onclick="closeAddTaskModal()">&times;</span> -->
+            <!--Following line creates a button to close the add task pop up.-->
+            <button type="button" onclick="closeAddTaskModal()" class="close-modal">Close</button>
             <h2>Add Task</h2>
             <form id="addTaskForm" onsubmit="return addTask()">
                 <label for="taskTitle">Task Name:</label>
@@ -54,6 +56,10 @@
             </form>
         </div>
     </div>
+    <!--This pop up window appears after clicking courses. It provides a menu option for users to add courses.-->
+    <!-- <div id="addCourseModal" class="add-course-modal">
+
+    </div> -->
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
