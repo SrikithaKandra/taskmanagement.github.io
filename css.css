@@ -75,3 +75,35 @@ header {
     cursor: pointer;
     font-size: 15px;
 }
+
+.calendar-section {
+    display: none;
+    margin-top: 20px;
+}
+
+.calendar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.ui-datepicker-calendar td.highlight {
+    background-color: #b3d9ff !important; /* Highlight color for the current date */
+}
+
+.close-calendar-button {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    background-color: #ff9999; /* Close button background color */
+    color: #fff; /* Close button text color */
+    border: none;
+    cursor: pointer;
+}
+
+.calendar-task {
+    background-color: #ffeeba;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+    cursor: pointer;
+}

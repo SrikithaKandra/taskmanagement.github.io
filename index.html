@@ -17,7 +17,7 @@
         <span>
             <button id="agendaButton" class="option-button">Agenda</button>
             <button id="courseButton" class="option-button">Courses</button>
-            <button id="calendarButton" class="option-button">Calendar</button>
+            <button id="calendarButton" class="option-button" onclick="showCalendar()">Calendar</button>
         </span>
     </div>
     <hr>
@@ -51,6 +51,16 @@
 
                 <label for="taskDescription">Task Description:</label>
                 <textarea id="taskDescription" name="taskDescription" rows="4"></textarea>
+                
+                <label for="taskPriority">Priority:</label>
+                <select id="taskPriority" name="taskPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br>
+    
+                <label for="taskdate">Task Date:</label>
+                <input type="date" id="selectedDate" name="selectedDate"><br>
 
                 <button type="submit">Add Task</button>
             </form>
@@ -60,6 +70,10 @@
     <!-- <div id="addCourseModal" class="add-course-modal">
 
     </div> -->
+
+    <div id="calendarSection" class="calendar-section">
+        <div id="calendar" class="calendar"></div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
