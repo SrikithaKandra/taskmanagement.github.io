@@ -15,8 +15,7 @@
     <!--Section buttons to access planner, courses, calendar-->
     <div class="options">
         <span>
-            <button id="agendaButton" class="option-button">Agenda</button>
-            <button id="courseButton" class="option-button">Courses</button>
+            <button id="courseButton" class="option-button" onclick="openCourseMenu()">Courses</button>
             <button id="calendarButton" class="option-button">Calendar</button>
         </span>
     </div>
@@ -43,7 +42,7 @@
         <div class="modal-content">
             <!-- <span class="close-modal" onclick="closeAddTaskModal()">&times;</span> -->
             <!--Following line creates a button to close the add task pop up.-->
-            <button type="button" onclick="closeAddTaskModal()" class="close-modal">Close</button>
+            <button type="button" onclick="closeAddTaskModal()" class="close-button">Close</button>
             <h2>Add Task</h2>
             <form id="addTaskForm" onsubmit="return addTask()">
                 <label for="taskTitle">Task Name:</label>
@@ -52,15 +51,53 @@
                 <label for="taskDescription">Task Description:</label>
                 <textarea id="taskDescription" name="taskDescription" rows="4"></textarea>
 
+                <!--Drop down bar for the courses.-->
+                <br>
+                <label for="courseOption">Course: </label>
+                <select id="courseOptions" name="courseOptions">
+                    <option value="no course">No Course</option>
+                </select>
+                <br>
                 <button type="submit">Add Task</button>
             </form>
         </div>
     </div>
+    
     <!--This pop up window appears after clicking courses. It provides a menu option for users to add courses.-->
-    <!-- <div id="addCourseModal" class="add-course-modal">
+    <div id="courseMenu" class="course-menu">
+        <!--Menu popup window.-->
+        <div class="menu-content">
+            <!--Button to close the window.-->
+            <button type="button" onclick="closeCourseMenu()" class="close-button">Close</button>
+            <h2>Course Menu</h2>
+            <!--Button to add courses.-->
+            <button type="button" onclick="openAddCourseWindow()">Add Course</button>
+            <hr>
+            <!--Column were courses are displayed.-->
+            <div id="courseList" class="column" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        </div>
+    </div>
 
-    </div> -->
-
+    <!--This is the pop up window that appears when clicking on Add Course.-->
+    <div id="addCourse" class="course-menu">
+        <!--Add course pop up window.-->
+        <div class="menu-content">
+            <!--Button to close the window.-->
+            <button type="button" onclick="closeAddCourseWindow()" class="close-button">Close</button>
+            <h2>Add Course</h2>
+            <form id="addCourseForm" onsubmit="return addCourse()">
+                <!--Prompt for course name, this must be given.-->
+                <label for="courseName">Course Name:</label>
+                <input type="text" id="courseName" name="courseName" required><br>
+                <!--Users may enter some description of the course.-->
+                <label for="courseDescription">Course Description:</label>
+                <textarea id="courseDescription" name="courseDescription" rows="1"></textarea>
+                <!--Button to submit the form.-->
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+    <!--Script files.-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="javascript.js"></script> 

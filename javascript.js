@@ -33,7 +33,7 @@ $(function() {
         function addTask() {
             var title = document.getElementById("taskTitle").value;
             var description = document.getElementById("taskDescription").value;
-
+            var course = document.getElementById("courseOptions").value;
             if (title.trim() !== "") {
                 var allTasksColumn = document.getElementById("allTasks");
                 var taskItem = document.createElement("div");
@@ -45,8 +45,9 @@ $(function() {
                 taskItem.setAttribute("ondragstart", "drag(event)");
 
                 taskItem.innerHTML = `
-                    <h3>${title}</h3>
+                    <h3>${title} - ${course}</h3>
                     <p>${description}</p>
+
                     <button onclick="completeTask('${taskId}')">Complete</button>
                     <button onclick="editTask('${taskId}')">Edit</button>
                     <button onclick="deleteTask('${taskId}')">Delete</button>
@@ -84,9 +85,9 @@ $(function() {
             var taskItem = document.getElementById(taskId);
             var title = taskItem.querySelector("h3").innerText;
             var description = taskItem.querySelector("p").innerText;
-
             // Set form fields with task details for editing
-            document.getElementById("taskTitle").value = title;
+            // Title also contains the course, which needs to be removed before updating new title.
+            document.getElementById("taskTitle").value = title.substring(0, title.indexOf("-"));
             document.getElementById("taskDescription").value = description;
 
             // Remove the task item from the list
@@ -104,4 +105,97 @@ $(function() {
 
         function drag(event) {
             event.dataTransfer.setData("text", event.target.id);
+        }
+        
+        /* Used to open the course menu. */ 
+        function openCourseMenu() {
+            document.getElementById("courseMenu").style.display = "flex";
+        }
+
+        /* Used to close the course menu. */
+        function closeCourseMenu() {
+            document.getElementById("courseMenu").style.display = "none";
+        }
+
+        /* Used to open the add course window. */ 
+        function openAddCourseWindow() {
+            document.getElementById("addCourse").style.display = "flex";
+        }
+
+        /* Used to close the course menu. */
+        function closeAddCourseWindow() {
+            document.getElementById("addCourse").style.display = "none";
+            document.getElementById("addCourseForm").reset();
+        }
+        
+        /* Used to add courses. */
+        function addCourse() {
+            var name = document.getElementById("courseName").value;
+            var description = document.getElementById("courseDescription").value;
+            var courseColumn = document.getElementById("courseList");
+            var courseItem = document.createElement("div");
+            var courseId = name;
+            // Dropdown bar for the options of courses in Add Task.
+            var courseOptionsBar = document.getElementById("courseOptions");
+            var option = document.createElement("option");
+
+            // Set the course attributes and add to the course list.
+            courseItem.setAttribute("id", courseId);
+            courseItem.setAttribute("class", "course");
+            courseItem.innerHTML = `
+                <h4 style="display: inline-block;">${name}</h4>
+                <p style="display: inline-block;">${description}</p>
+                <button onclick="editCourse('${courseId}')" style="display: inline-block;">Edit</button>
+                <button onclick="removeCourse('${courseId}')" style="display: inline-block;">Remove</button>
+                `;
+            courseColumn.appendChild(courseItem);
+
+            // Also update the dropdown bar.
+            option.value = name;
+            option.textContent = name;
+            courseOptionsBar.appendChild(option);
+
+            closeAddCourseWindow();
+            return false; // Prevent form submission
+        }
+
+        /* Used to edit courses. */
+        function editCourse(courseId) {
+            var course = document.getElementById(courseId);
+            var name = course.querySelector("h4").innerText;
+            var description = course.querySelector("p").innerText;
+            var courseOptionsBar = document.getElementById("courseOptions");
+            var options = courseOptionsBar.options;
+            
+            document.getElementById("courseName").value = name;
+            document.getElementById("courseDescription").value = description;
+
+            // Remove the task item from the list
+            course.parentNode.removeChild(course);
+
+            // Also remove the course from the add task course options.
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].textContent === courseId) {
+                    courseOptionsBar.removeChild(options[i]);
+                    break;
+                }
+            }
+            openAddCourseWindow();
+        }
+
+        function removeCourse(courseId) {
+            var course = document.getElementById(courseId);
+            var courseOptionsBar = document.getElementById("courseOptions");
+            var options = courseOptionsBar.options;
+    
+            if (course) {
+                course.parentNode.removeChild(course);
+                // This is to make sure users cannot choose the deleted course when adding tasks.
+                for (var i = 0; i < options.length; i++) {
+                    if (options[i].textContent === courseId) {
+                        courseOptionsBar.removeChild(options[i]);
+                        break;
+                    }
+                }
+            }
         }
