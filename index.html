@@ -16,7 +16,7 @@
     <div class="options">
         <span>
             <button id="courseButton" class="option-button" onclick="openCourseMenu()">Courses</button>
-            <button id="calendarButton" class="option-button">Calendar</button>
+            <button id="calendarButton" class="option-button" onclick="showCalendar()">Calendar</button>
         </span>
     </div>
     <hr>
@@ -49,7 +49,17 @@
                 <input type="text" id="taskTitle" name="taskTitle" required><br>
 
                 <label for="taskDescription">Task Description:</label>
-                <textarea id="taskDescription" name="taskDescription" rows="4"></textarea>
+                <textarea id="taskDescription" name="taskDescription" rows="4"></textarea><br>
+                
+                <label for="taskPriority">Priority:</label>
+                <select id="taskPriority" name="taskPriority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select><br>
+    
+                <label for="taskdate">Task Date:</label>
+                <input type="date" id="selectedDate" name="selectedDate"><br>
 
                 <!--Drop down bar for the courses.-->
                 <br>
@@ -96,6 +106,10 @@
                 <button type="submit">Add</button>
             </form>
         </div>
+    </div>
+    
+    <div id="calendarSection" class="calendar-section">
+        <div id="calendar" class="calendar"></div>
     </div>
     <!--Script files.-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
