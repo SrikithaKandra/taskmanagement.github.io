@@ -62,6 +62,12 @@ $(function() {
                 taskItem.setAttribute("class", "task");
                 taskItem.setAttribute("draggable", "true");
                 taskItem.setAttribute("ondragstart", "drag(event)");
+
+                // Add the necessary drag-and-drop attributes to the taskItem
+                taskItem.setAttribute("draggable", "true");
+                taskItem.setAttribute("ondragstart", "drag(event)");
+                taskItem.setAttribute("ondragover", "allowDrop(event)");
+                taskItem.setAttribute("ondrop", "drop(event)");
         
                 taskItem.innerHTML = `
                     <h3>${title} - ${course}</h3>
