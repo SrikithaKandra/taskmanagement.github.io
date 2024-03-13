@@ -26,6 +26,19 @@ header {
     margin-right: 10px;
     overflow: auto;
     max-height: 400px;
+    min-height: 100px;
+}
+
+.task {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding: 10px;
+    cursor: move;
+}
+
+.task:hover {
+    background-color: #f2f2f2;
 }
 
 .add-task-button {
